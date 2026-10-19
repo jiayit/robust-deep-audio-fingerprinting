@@ -1,0 +1,53 @@
+#!/bin/bash
+#SBATCH --job-name=eval_test_all
+#SBATCH --output=%x_%j_train.out
+#SBATCH --mail-user="<your_email_address>"
+#SBATCH --mail-type="ALL"
+#SBATCH --time=7-00:00:00
+##SBATCH --time=00:10:00
+#SBATCH --partition=gpu-mig-40g
+##SBATCH --partition=gpu-short
+#SBATCH --ntasks=1
+#SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=4
+
+
+# load modules (assuming you start from the default environment)
+# we explicitly call the modules to improve reproducibility
+# in case the default settings change
+#module load Python/3.11.5-GCCcore-13.2.0
+module load ALICE/default
+module load slurm
+module load CUDA/12.3.2
+module load GCC/11.3.0
+
+# Source the Python virtual environment
+# source $HOME/user_guide_tutorials/first_python_job/python_test_venv/bin/activate
+#source $HOME/GraFP/grafp/bin/activate
+source grafp/bin/activate
+#source $HOME/GraFP/grafp/bin/activate
+python --version
+
+echo "[$SHELL] #### Starting Python test"
+echo "[$SHELL] ## This is $SLURM_JOB_USER on $HOSTNAME and this job has the ID $SLURM_JOB_ID"
+# get the current working directory
+export CWD=$(pwd)
+
+echo "[$SHELL] ## current working directory: "$CWD
+
+echo "## Checking status of CUDA device with nvidia-smi"
+nvidia-smi
+
+# Run the file
+echo "[$SHELL] ## Run script"
+# python3 test_python_simple.py
+#python3 train.py --model_folder=test1
+#python test_fp.py --query_lens=1,2,3,5 --n_query_db=500 \
+#                            --test_snr=10 --text=withir_fma_medium_10 \
+#                            --test_ids=data/medeval_ids.npy --model=test \
+#			    --model_folder=test1
+bash icassp_no_download_eval_test.sh data/fma_medium
+
+echo "[$SHELL] ## Script finished"
+
+echo "[$SHELL] #### Finished Python test. Have a nice day"

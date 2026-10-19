@@ -1,0 +1,29 @@
+tc_27: [370]
+tc_29: ['best']
+#test: ['best', 320]
+test: ['best', 400, 370]
+# test_tri: ['best']             # triplet alpha 0.2 with aug  
+test_tri1: ['best']        # triplet alpha 0.7 with aug  
+test_tri_2: ['best', 200]         # triplet alpha 0.5 with aug  (best retrain) 
+# test_tri_3: ['best']                  # triplet alpha 0.7 with aug  (::::: retrain) 
+test_tri_02: ['best']       # triplet alpha 0.2 (retrain)
+test_tri_07: ['best']        # triplet alpha 0.7 (retrain)
+
+test_tri_wota: ['best', 320]
+
+test_xent1: ['best', 400]
+test_xent2: ['best', 400]       # batch size 128
+test_xent1_1: ['best', 380]      # retrain batch 256   tau 0.2  with aug
+test_xent2_1: ['best', 340]      # retrain batch 256   tau 0.7  with aug
+test_xnet_05: ['best', 330]
+test_xent_05_1: ['best', 350]
+
+test_supcon: ['best', 400]         #supcon batch 128 retrain
+
+tc_30: ['best']
+tc_31: [360]
+
+tc9: ['best']
+tc10: [275]
+tc11: [350]
+tc12: [325]

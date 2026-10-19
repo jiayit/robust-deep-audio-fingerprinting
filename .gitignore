@@ -1,0 +1,8 @@
+/*.out
+/data/
+/logs/
+/data1/
+__pycache__/
+grafp/
+*.zip
+/runs/
